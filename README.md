@@ -1,2 +1,2 @@
-# LARA-picturebook-working-final
+# LARA-Picturebook-Object-Selector-V2
 Created with CodeSandbox
