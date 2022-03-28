@@ -14,7 +14,7 @@ export default function Sent(props) {
           if (w_i < props.sent.length - 2) {
             let coords = [];
             word.map((w, j) => {
-              if (j < w.lwngth && j !== 0) {
+              if (j < w.length && j !== 0) {
                 coords.push(w[j]);
               }
             });

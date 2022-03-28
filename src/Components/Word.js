@@ -82,7 +82,7 @@ export default function Word(props) {
     context.clearRect(0, 0, canvas.current.width, canvas.current.height);
     context.beginPath();
     context.moveTo(coords[0][0], coords[0][1]);
-    for (i of coords.reverse()) context.lineTo(i[0], i[1]);
+    for (let i of coords.reverse()) context.lineTo(i[0], i[1]);
     context.stroke();
   };
   window.drawPoly = drawPoly;
@@ -99,6 +99,7 @@ export default function Word(props) {
       <Button
         variant={buttonVariety}
         id={props.word[0] + "_" + props.sentID + "_" + props.wordID}
+        key={props.word[0] + "_" + props.sentID + "_" + props.wordID + "_key"}
         onClick={showPolygon}
         className="mb-2"
       >

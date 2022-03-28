@@ -30,7 +30,8 @@ export default function Page(props) {
     setImageID
   } = useContext(VariableContext);
 
-  canvas = useRef(); // ADDED
+  let canvas = useRef(); // ADDED
+  window.canvas = canvas
 
   useEffect(() => {
     const context = canvas.current.getContext("2d");
@@ -114,3 +115,4 @@ export default function Page(props) {
     </div>
   );
 }
+
