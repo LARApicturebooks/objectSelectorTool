@@ -15,7 +15,7 @@ export default function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:1337/api/books")
+      .get("https://pure-bastion-46301.herokuapp.com/api/books")
       .then((json) => {
         console.log("books loaded immediately:", json.data.data);
         setBooksFromBackEnd(json.data.data)

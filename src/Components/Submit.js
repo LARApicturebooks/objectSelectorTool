@@ -17,18 +17,29 @@ export default function Submit(props) {
     
     if (book !== undefined) {
       axios
-        //.get("http://localhost:1337/api/books")
-        .put("http://localhost:1337/api/books/" + book.id, {
+        .put("https://pure-bastion-46301.herokuapp.com/api/books/" + book.id, {
           "data": {
             "Title": props.book,
-            "coordinateData": props.pages
+            "objectCoordinates": props.pages
           }
         })
         .then((json) => {
-          console.log("json data after submit:", json);
+          console.log("after updating coords:", json);
         })
         .catch((err) => console.log("err:", err));
-    }  
+    } else {
+      axios
+        .post("https://pure-bastion-46301.herokuapp.com/api/books/", {
+          "data": {
+            "Title": props.book,
+            "objectCoordinates": props.pages
+          }
+        })
+        .then((json) => {
+          console.log("after creating coords:", json);
+        })
+        .catch((err) => console.log("err:", err));
+    } 
 
     //console.log("props.pages:", props.pages);
     //const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
