@@ -10,7 +10,8 @@ export default function Book(props) {
 
   useEffect(() => {
     axios
-      .get("https://warm-reef-17230.herokuapp.com/api/v1/getBookList")
+      //.get("https://warm-reef-17230.herokuapp.com/api/v1/getBookList")
+      .get("http://warm-reef-17230.herokuapp.com/api/v1/getBookList")
       .then((json) => {
         //console.log("json.data:", json.data);
         //json.data.push("test_book");

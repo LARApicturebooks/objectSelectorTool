@@ -37,7 +37,6 @@ export default function Pages(props) {
   //"https://warm-reef-17230.herokuapp.com/api/v1/getBook/"
 
   useEffect(() => {
-    console.log("props.book:", props.book);
     axios
       .get("https://warm-reef-17230.herokuapp.com/api/v1/getBook/" + props.book)
       .then((json) => {
@@ -183,7 +182,7 @@ export default function Pages(props) {
             </>
           )}
         </Container>
-        <Submit showHideImage={showHideImage} pages={props.pages} />
+        <Submit showHideImage={showHideImage} book={props.book} pages={props.pages} booksFromBackEnd={props.booksFromBackEnd} />
       </Container>
     </VariableContext.Provider>
   );
