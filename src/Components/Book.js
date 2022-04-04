@@ -3,23 +3,22 @@ import { useEffect, useState } from "react";
 import { Form, Container } from "react-bootstrap";
 
 export default function Book(props) {
-  const [isLoading, setIsLoading] = useState(true);
 
   // let getBookNamesURL = "https://warm-reef-17230.herokuapp.com/api/v1/picturebook/getAllPictureBookNames"
   // let getBookNamesURL = "https://warm-reef-17230.herokuapp.com/api/v1/getBookList"
 
-  useEffect(() => {
-    axios
+  //useEffect(() => {
+    //axios
+      ////.get("https://warm-reef-17230.herokuapp.com/api/v1/getBookList")
       //.get("https://warm-reef-17230.herokuapp.com/api/v1/getBookList")
-      .get("https://warm-reef-17230.herokuapp.com/api/v1/getBookList")
-      .then((json) => {
-        //console.log("json.data:", json.data);
-        //json.data.push("test_book");
-        props.setBooks(json.data);
-        setIsLoading(false);
-      })
-      .catch((err) => console.log("err:", err));
-  }, []);
+      //.then((json) => {
+        ////console.log("json.data:", json.data);
+        ////json.data.push("test_book");
+        //props.setBooks(json.data);
+        //setIsLoading(false);
+      //})
+      //.catch((err) => console.log("err:", err));
+  //}, []);
 
   const displayImages = (e) => {
     //console.log("in displayImages:", e.target.value);
@@ -28,7 +27,7 @@ export default function Book(props) {
 
   return (
     <Container className="mt-4">
-      {isLoading ? (
+      {props.isLoading ? (
         <p>Please wait...</p>
       ) : (
         <>

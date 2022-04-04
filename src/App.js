@@ -10,8 +10,11 @@ import axios from "axios";
 export default function App() {
   const [books, setBooks] = useState([]);
   const [book, setBook] = useState("");
+  const [id, setId] = useState("");
   const [pages, setPages] = useState({});
   const [booksFromBackEnd, setBooksFromBackEnd] = useState([]);
+  const [booksIds, setBooksIds] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -19,6 +22,16 @@ export default function App() {
       .then((json) => {
         console.log("books loaded immediately:", json.data.data);
         setBooksFromBackEnd(json.data.data)
+        let bookList = []
+        let booksIdsDict = {}
+        json.data.data.forEach(b => {
+          bookList.push(b.attributes.Title)
+          booksIdsDict[b.attributes.Title] = b.id
+        })
+        setBooks(bookList)
+        setBooksIds(booksIdsDict)
+        setIsLoading(false);
+        //console.log('booksIds:', booksIds)
       })
       .catch((err) => console.log("err:", err));
   }, []);
@@ -29,8 +42,8 @@ export default function App() {
       <Container className="mt-4">
         <h1>LARA Picturebook Object Selector</h1>
         <h5>(Data in LARA Picturebook format)</h5>
-        <Book books={books} setBooks={setBooks} setBook={setBook} />
-        <Pages pages={pages} setPages={setPages} book={book} booksFromBackEnd={booksFromBackEnd} />
+        <Book books={books} setBooks={setBooks} setBook={setBook} isLoading={isLoading} />
+        <Pages pages={pages} setPages={setPages} book={book} booksFromBackEnd={booksFromBackEnd} booksIds={booksIds} />
         {/* <Page
           pages={pages}
           setPages={setPages}

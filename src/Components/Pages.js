@@ -37,25 +37,33 @@ export default function Pages(props) {
   //"https://warm-reef-17230.herokuapp.com/api/v1/getBook/"
 
   useEffect(() => {
-    axios
-      .get("https://warm-reef-17230.herokuapp.com/api/v1/getBook/" + props.book)
-      .then((json) => {
-        console.log("json data after book selected:", json.data);
-        //setUrlPrefix(json.data[0].prefixURL); for dev server
-        setUrlPrefix(
-          "https://www.issco.unige.ch/en/research/projects/callector/word_locations/" +
-            props.book +
-            "/"
-        );
+    if (props.book !== "") {
+      console.log('props.book:', props.book)
+      console.log('props.bookIds:', props.booksIds)
+      //axios
+        //.get("https://warm-reef-17230.herokuapp.com/api/v1/getBook/" + props.book)
+      axios
+        .get("https://pure-bastion-46301.herokuapp.com/api/books/" + props.booksIds[props.book])
+        .then((json) => {
+          console.log("json data after book selected:", json.data);
+          //setUrlPrefix(json.data[0].prefixURL); for dev server
+          setUrlPrefix(
+            "https://www.issco.unige.ch/en/research/projects/callector/word_locations/" +
+              props.book +
+              "/"
+          );
 
-        props.setPages(json.data);
-        setPagesLoading(false);
-        setShowHideImage("d-none");
-        setClearSelection("hidden");
-        setShowHideImages("");
-      })
-      .catch((err) => console.log("err:", err));
-    setClicks([]);
+          props.setPages(json.data.data.attributes.objectCoordinates);
+          setPagesLoading(false);
+          setShowHideImage("d-none");
+          setClearSelection("hidden");
+          setShowHideImages("");
+        })
+        .catch((err) => console.log("err:", err));
+      setClicks([]);
+    } else {
+      console.log('props.book is empty string')
+    }
   }, [props.book]);
 
   useEffect(() => {
