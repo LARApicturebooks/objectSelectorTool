@@ -43,7 +43,7 @@ export default function Pages(props) {
       //axios
         //.get("https://warm-reef-17230.herokuapp.com/api/v1/getBook/" + props.book)
       axios
-        .get("https://pure-bastion-46301.herokuapp.com/api/books/" + props.booksIds[props.book])
+        .get("https://lara-picturebooks-backend.herokuapp.com/api/books/" + props.booksIds[props.book])
         .then((json) => {
           console.log("json data after book selected:", json.data);
           //setUrlPrefix(json.data[0].prefixURL); for dev server
