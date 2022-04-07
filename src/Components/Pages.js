@@ -59,7 +59,10 @@ export default function Pages(props) {
           setClearSelection("hidden");
           setShowHideImages("");
         })
-        .catch((err) => console.log("err:", err));
+        .catch((err) => {
+          console.log("err:", err)
+          alert('no data available for that book')
+        })
       setClicks([]);
     } else {
       console.log('props.book is empty string')

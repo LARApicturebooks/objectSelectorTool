@@ -17,7 +17,7 @@ export default function Submit(props) {
     
     if (book !== undefined) {
       axios
-        .put("https://pure-bastion-46301.herokuapp.com/api/books/" + book.id, {
+        .put("https://lara-picturebooks-backend.herokuapp.com/api/books/" + book.id, {
           "data": {
             "Title": props.book,
             "objectCoordinates": props.pages
@@ -29,7 +29,7 @@ export default function Submit(props) {
         .catch((err) => console.log("err:", err));
     } else {
       axios
-        .post("https://pure-bastion-46301.herokuapp.com/api/books/", {
+        .post("https://lara-picturebooks-backend.herokuapp.com/api/books/", {
           "data": {
             "Title": props.book,
             "objectCoordinates": props.pages
