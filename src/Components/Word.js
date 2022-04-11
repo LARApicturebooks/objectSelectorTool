@@ -2,7 +2,7 @@ import { Button, Col } from "react-bootstrap";
 import { useEffect, useState, useContext } from "react";
 import { VariableContext } from "./Pages";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faVolumeLow, faSpellCheck } from "@fortawesome/free-solid-svg-icons";
+import { faVolumeHigh, faPencil } from "@fortawesome/free-solid-svg-icons";
 
 export default function Word(props) {
   const [buttonVariety, setButtonVariety] = useState("primary");
@@ -29,9 +29,9 @@ export default function Word(props) {
   let displayWord = ""
   displayWord = props.word[0]
   if (props.word[0] === "SPEAKER-CONTROL") {
-    displayWord = <FontAwesomeIcon icon={faVolumeLow} />
+    displayWord = <FontAwesomeIcon icon={faVolumeHigh} />
   } else if (props.word[0] === "TRANSLATION-CONTROL") {
-    displayWord = <FontAwesomeIcon icon={faSpellCheck} />
+    displayWord = <FontAwesomeIcon icon={faPencil} />
   }
 
   useEffect(() => {
