@@ -47,7 +47,7 @@ export default function Word(props) {
   }, [props, readyToSelect]);
 
   const showPolygon = (e) => {
-    if ( clicks.length > 1 ) {
+    //if ( clicks.length > 1 ) {
       let coordArray = e.target.id.split("_");
       console.log("coordArray", coordArray);
       let word = coordArray[0];
@@ -76,7 +76,7 @@ export default function Word(props) {
           }
         }
       }
-    }
+    //}
   };
 
   const drawPoly = (coords) => {
