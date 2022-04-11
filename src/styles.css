@@ -31,3 +31,6 @@
 .thumbnail-image:hover {
   cursor: pointer;
 }
+svg {
+  pointer-events: none;
+}
