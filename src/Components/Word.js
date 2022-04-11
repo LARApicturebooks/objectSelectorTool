@@ -1,6 +1,8 @@
 import { Button, Col } from "react-bootstrap";
 import { useEffect, useState, useContext } from "react";
 import { VariableContext } from "./Pages";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeLow, faSpellCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function Word(props) {
   const [buttonVariety, setButtonVariety] = useState("primary");
@@ -24,6 +26,14 @@ export default function Word(props) {
     setPolyShowing
   } = useContext(VariableContext);
 
+  let displayWord = ""
+  displayWord = props.word[0]
+  if (props.word[0] === "SPEAKER-CONTROL") {
+    displayWord = <FontAwesomeIcon icon={faVolumeLow} />
+  } else if (props.word[0] === "TRANSLATION-CONTROL") {
+    displayWord = <FontAwesomeIcon icon={faSpellCheck} />
+  }
+
   useEffect(() => {
     if (readyToSelect) {
       setButtonVariety("warning");
@@ -37,37 +47,39 @@ export default function Word(props) {
   }, [props, readyToSelect]);
 
   const showPolygon = (e) => {
-    let coordArray = e.target.id.split("_");
-    //console.log("coordArray:", coordArray);
-    let word = coordArray[0];
-    setSelectedWord([word, props.sentID, props.wordID]);
-    if (readyToSelect) {
-      setReadyToSelect(false);
-      drawPoly(clicks);
-      setPolyShowing(true);
-      //console.log("showPolygon readyToSelect");
-      wordsData[props.sentID][props.wordID] = [props.word[0]].concat(clicks);
-      setWordsData(wordsData);
-      //console.log('wordsData:', wordsData)
-    } else {
-      setClicks([]);
-      //console.log('wordsData[coordArray[1]][coordArray[2]]:', wordsData[coordArray[1]][coordArray[2]])
-      if (wordsData[coordArray[1]][coordArray[2]][1][0] !== "") {
-        drawPoly(wordsData[coordArray[1]][coordArray[2]].slice(1));
-        setClearSelection("visible");
-        //setCanDraw(false);
+    if ( clicks.length > 1 ) {
+      let coordArray = e.target.id.split("_");
+      console.log("coordArray", coordArray);
+      let word = coordArray[0];
+      setSelectedWord([word, props.sentID, props.wordID]);
+      if (readyToSelect) {
+        setReadyToSelect(false);
+        drawPoly(clicks);
         setPolyShowing(true);
+        console.log("word", word);
+        wordsData[props.sentID][props.wordID] = [props.word[0]].concat(clicks);
+        setWordsData(wordsData);
+        console.log('wordsData:', wordsData)
       } else {
-        setClearSelection("hidden");
-        clearPoly();
-        //setCanDraw(true);
-        setPolyShowing(false);
+        setClicks([]);
+        if (coordArray[1] !== undefined) {
+          if (wordsData[coordArray[1]][coordArray[2]][1][0] !== "") {
+            drawPoly(wordsData[coordArray[1]][coordArray[2]].slice(1));
+            setClearSelection("visible");
+            //setCanDraw(false);
+            setPolyShowing(true);
+          } else {
+            setClearSelection("hidden");
+            clearPoly();
+            //setCanDraw(true);
+            setPolyShowing(false);
+          }
+        }
       }
     }
   };
 
   const drawPoly = (coords) => {
-    console.log("coords:", coords);
     if (coords.length === 2) {
       //coords = []
       let newCoords = [];
@@ -103,7 +115,7 @@ export default function Word(props) {
         onClick={showPolygon}
         className="mb-2"
       >
-        {props.word[0]}
+        {displayWord}
       </Button>
     </Col>
     // }}

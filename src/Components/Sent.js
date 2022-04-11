@@ -11,8 +11,9 @@ export default function Sent(props) {
     <Container>
       <Row xs="auto" className="mt-4">
         {props.sent.map((word, w_i) => {
-          if (w_i < props.sent.length - 2) {
+          if (w_i < props.sent.length) {
             let coords = [];
+            //console.log('word:', word)
             word.map((w, j) => {
               if (j < w.length && j !== 0) {
                 coords.push(w[j]);
