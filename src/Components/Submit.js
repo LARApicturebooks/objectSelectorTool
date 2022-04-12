@@ -12,10 +12,10 @@ export default function Submit(props) {
   setInterval( submitData, 5000)
   const submitData = () => {
 
-    console.log("props.book:", props.book);
-    console.log("props.pages:", props.pages);
-    console.log("props.booksFromBackEnd:", props.booksFromBackEnd);
-    console.log("find id 5:", props.booksFromBackEnd.find(b => b.attributes.Title === props.book));
+    //console.log("props.book:", props.book);
+    //console.log("props.pages:", props.pages);
+    //console.log("props.booksFromBackEnd:", props.booksFromBackEnd);
+    //console.log("find id 5:", props.booksFromBackEnd.find(b => b.attributes.Title === props.book));
 
     let book = props.booksFromBackEnd.find(b => b.attributes.Title === props.book);
     
@@ -31,7 +31,7 @@ export default function Submit(props) {
           console.log("after updating coords:", json);
           setSave(false)
         })
-        .catch((err) => console.log("err:", err));
+        .catch((err) => alert("there was a problem saving. Please refresh and try again.\n\nerror: ", err));
     } else {
       axios
         .post("https://lara-picturebooks-backend.herokuapp.com/api/books/", {
@@ -44,7 +44,7 @@ export default function Submit(props) {
           console.log("after creating coords:", json);
           setSave(false)
         })
-        .catch((err) => console.log("err:", err));
+        .catch((err) => alert("there was a problem saving. Please refresh and try again.\n\nerror: ", err));
     } 
 
     //console.log("props.pages:", props.pages);
