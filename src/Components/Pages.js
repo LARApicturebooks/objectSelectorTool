@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Image, Container, Row, Col, Button } from "react-bootstrap";
 import Page from "./Page";
+import Saving from "./Saving";
 import Words from "./Words";
 import Editor from "./Editor";
 import Submit from "./Submit";
@@ -32,6 +33,7 @@ export default function Pages(props) {
   const [selectorShape, setSelectorShape] = useState("polygon");
   const [imageURL, setImageURL] = useState("");
   const [imageID, setImageID] = useState("");
+  const [save, setSave] = useState(false);
 
   //"https://warm-reef-17230.herokuapp.com/api/v1/picturebook/getPictureBookByName/"
   //"https://warm-reef-17230.herokuapp.com/api/v1/getBook/"
@@ -143,9 +145,12 @@ export default function Pages(props) {
         imageURL,
         setImageURL,
         imageID,
-        setImageID
+        setImageID,
+        save,
+        setSave
       }}
     >
+      {save && <Saving /> }
       <Container className="mt-4">
         <Container className={showHideImages}>
           {pagesLoading ? (

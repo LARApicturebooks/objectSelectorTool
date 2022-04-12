@@ -4,7 +4,10 @@ import { VariableContext } from "./Pages";
 import axios from "axios";
 
 export default function Submit(props) {
-  const { wordsData } = useContext(VariableContext);
+  const { 
+    wordsData,
+    setSave
+  } = useContext(VariableContext);
 
   setInterval( submitData, 5000)
   const submitData = () => {
@@ -26,6 +29,7 @@ export default function Submit(props) {
         })
         .then((json) => {
           console.log("after updating coords:", json);
+          setSave(false)
         })
         .catch((err) => console.log("err:", err));
     } else {
@@ -38,6 +42,7 @@ export default function Submit(props) {
         })
         .then((json) => {
           console.log("after creating coords:", json);
+          setSave(false)
         })
         .catch((err) => console.log("err:", err));
     } 

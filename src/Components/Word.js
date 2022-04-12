@@ -23,7 +23,8 @@ export default function Word(props) {
     readyToSelect,
     setReadyToSelect,
     polyShowing,
-    setPolyShowing
+    setPolyShowing,
+    setSave
   } = useContext(VariableContext);
 
   let displayWord = ""
@@ -61,6 +62,7 @@ export default function Word(props) {
         wordsData[props.sentID][props.wordID] = [props.word[0]].concat(clicks);
         setWordsData(wordsData);
         console.log('wordsData:', wordsData)
+        setSave(true)
         setTimeout(function(){saveButton.click()}, 1000)
       } else {
         setClicks([]);

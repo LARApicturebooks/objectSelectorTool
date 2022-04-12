@@ -34,3 +34,12 @@
 svg {
   pointer-events: none;
 }
+
+.savingContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 175px;
+  height: 100px;
+  color: red;
+}
