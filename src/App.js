@@ -36,7 +36,6 @@ export default function App() {
       .catch((err) => console.log("err:", err));
   }, []);
 
-
   return (
     <div className="App">
       <Container className="mt-4">

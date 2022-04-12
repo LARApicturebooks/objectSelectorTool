@@ -53,6 +53,7 @@ export default function Word(props) {
       let word = coordArray[0];
       setSelectedWord([word, props.sentID, props.wordID]);
       if (readyToSelect) {
+        let saveButton = document.getElementById('saveData')
         setReadyToSelect(false);
         drawPoly(clicks);
         setPolyShowing(true);
@@ -60,6 +61,7 @@ export default function Word(props) {
         wordsData[props.sentID][props.wordID] = [props.word[0]].concat(clicks);
         setWordsData(wordsData);
         console.log('wordsData:', wordsData)
+        setTimeout(function(){saveButton.click()}, 1000)
       } else {
         setClicks([]);
         if (coordArray[1] !== undefined) {

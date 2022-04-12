@@ -6,6 +6,7 @@ import axios from "axios";
 export default function Submit(props) {
   const { wordsData } = useContext(VariableContext);
 
+  setInterval( submitData, 5000)
   const submitData = () => {
 
     console.log("props.book:", props.book);
@@ -59,6 +60,8 @@ export default function Submit(props) {
             variant="success"
             //onClick={removePoly}
             className={props.showHideImage}
+            hidden
+            id="saveData"
             onClick={submitData}
             size="lg"
           >
