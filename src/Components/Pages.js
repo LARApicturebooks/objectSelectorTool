@@ -7,6 +7,7 @@ import Words from "./Words";
 import Editor from "./Editor";
 import Submit from "./Submit";
 import CropperElement from "./CropperElement";
+import cleanWordsData from "../utils"
 export const VariableContext = React.createContext();
 
 export default function Pages(props) {
@@ -37,6 +38,10 @@ export default function Pages(props) {
 
   //"https://warm-reef-17230.herokuapp.com/api/v1/picturebook/getPictureBookByName/"
   //"https://warm-reef-17230.herokuapp.com/api/v1/getBook/"
+
+  useEffect(() => {
+    console.log('wordsData:', wordsData)
+  }, [wordsData])
 
   useEffect(() => {
     if (props.book !== "") {
@@ -109,7 +114,10 @@ export default function Pages(props) {
     setShowHideImage("");
     setMainImageName(e.target.name);
     setMainImageUrl(e.target.src);
-    setWordsData(props.pages[e.target.name]);
+    //console.log('props.pages[e.target.name]:', props.pages[e.target.name])
+    let cleanedWordsData = cleanWordsData(props.pages[e.target.name])
+    props.pages[e.target.name] = cleanedWordsData
+    setWordsData(cleanedWordsData);
     // setEditorVisible("visible");
   };
 

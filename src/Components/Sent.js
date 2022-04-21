@@ -13,21 +13,22 @@ export default function Sent(props) {
         {props.sent.map((word, w_i) => {
           if (w_i < props.sent.length) {
             let coords = [];
-            //console.log('word:', word)
-            word.map((w, j) => {
-              if (j < w.length && j !== 0) {
-                coords.push(w[j]);
-              }
-            });
-            return (
-              <Word
-                word={word}
-                coords={coords}
-                sentID={props.sentID}
-                wordID={w_i}
-                key={word + w_i}
-              />
-            );
+            if (word !== null) {
+              word.map((w, j) => {
+                if (j < w.length && j !== 0) {
+                  coords.push(w[j]);
+                }
+              });
+              return (
+                <Word
+                  word={word}
+                  coords={coords}
+                  sentID={props.sentID}
+                  wordID={w_i}
+                  key={word + w_i}
+                />
+              );
+            } 
           }
         })}
       </Row>
